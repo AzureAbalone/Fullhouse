@@ -53,54 +53,44 @@ class Fraction:
         temp: int = gcd(self.numerator, self.denominator)
         self.numerator //= temp
         self.denominator //= temp
-        return Fraction(self.numerator, self.denominator)
+        return self
 
     def __add__(self, other) -> "Fraction":
         Fraction.zero_den(self)
         Fraction.zero_den(other)
-        return Fraction.simplify(
-            Fraction(
-                self.numerator * other.denominator + other.numerator * self.denominator,
-                self.denominator * other.denominator,
-            )
-        )
+        return Fraction(
+            self.numerator * other.denominator + other.numerator * self.denominator,
+            self.denominator * other.denominator,
+        ).simplify()
 
     def __sub__(self, other) -> "Fraction":
         Fraction.zero_den(self)
         Fraction.zero_den(other)
-        return Fraction.simplify(
-            Fraction(
-                self.numerator * other.denominator - self.denominator * other.numerator,
-                self.denominator * other.denominator,
-            )
-        )
+        return Fraction(
+            self.numerator * other.denominator - self.denominator * other.numerator,
+            self.denominator * other.denominator,
+        ).simplify()
 
     def __mul__(self, other) -> "Fraction":
         Fraction.zero_den(self)
         Fraction.zero_den(other)
-        return Fraction.simplify(
-            Fraction(
-                self.numerator * other.numerator, self.denominator * other.denominator
-            )
-        )
+        return Fraction(
+            self.numerator * other.numerator, self.denominator * other.denominator
+        ).simplify()
 
     def __truediv__(self, other) -> "Fraction":
         Fraction.zero_den(self)
         Fraction.zero_den(other)
-        return Fraction.simplify(
-            Fraction(
-                self.numerator * other.denominator, self.denominator * other.numerator
-            )
-        )
+        return Fraction(
+            self.numerator * other.denominator, self.denominator * other.numerator
+        ).simplify()
 
     def __pow__(self, integer: int) -> "Fraction":
         Fraction.zero_den(self)
-        return Fraction.simplify(
-            Fraction(
-                self.numerator**integer,
-                self.denominator**integer,
-            )
-        )
+        return Fraction(
+            self.numerator**integer,
+            self.denominator**integer,
+        ).simplify()
         # * ch pow được phân số vs phân số, chỉ pow đc với số nguyên
         ...
 
@@ -147,5 +137,5 @@ class Fraction:
         return self.numerator / self.denominator >= other.numerator / other.denominator
 
 
-a = Fraction(-123, -11)
-print(1 - a)
+a = Fraction(-4, -6)
+print(Fraction(1) + a)
