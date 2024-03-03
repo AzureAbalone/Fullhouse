@@ -1,5 +1,5 @@
 from math import gcd
-from typing import Union, Literal, Tuple, Any, List
+from typing import Union, Literal, Self, List
 
 
 ## TODO: chưa hỗ trợ biến đổi float sang Fraction
@@ -49,11 +49,14 @@ class Fraction:
     def to_float(self) -> float:
         return self.numerator / self.denominator
 
-    def simplify(self) -> "Fraction":
+    def simplify(self) -> Self:
         temp: int = gcd(self.numerator, self.denominator)
         self.numerator //= temp
         self.denominator //= temp
         return self
+
+    def __abs__(self) -> "Fraction":
+        return Fraction(abs(self.numerator), abs(self.denominator))
 
     def __add__(self, other) -> "Fraction":
         Fraction.zero_den(self)
