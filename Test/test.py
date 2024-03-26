@@ -140,5 +140,4 @@ class Fraction:
         return self.numerator / self.denominator >= other.numerator / other.denominator
 
 
-a = Fraction(-4, -6)
-print(Fraction(1) + a)
+print(Fraction(1, 3))
